@@ -14,9 +14,14 @@
                 <li><a href="{%  url 'blog:post_list' %}">Post_list</a></li>
                 {% if user.is_authenticated %}
                 <li><a href="{%  url 'blog:post_draft_list' %}">Drafts</a></li>
-                <li><a href="{%  url 'blog:logout' %}">Logout</a></li>
+                <li>
+                    <form action="{% url 'logout' %}" method="post">
+                        {% csrf_token %}
+                        <input class="btn btn-danger" type="submit" value="Logout">
+                    </form>
+                </li>                    
                 {% else %}
-                <li><a href="{%  url 'blog:login' %}">Login</a></li>
+                <li><a class="btn btn-secondary" href="{%  url 'login' %}">Login</a></li>
                 {% endif %}
 
             </ul>

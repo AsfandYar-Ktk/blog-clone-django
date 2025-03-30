@@ -103,28 +103,28 @@ def remove_comment(request, pk):
     return redirect('blog:post_detail', pk=post_pk)
 
 
-def login_view(request):
-    next_url = request.GET.get('next', reverse('blog:post_list'))
-    print(next_url)
+# def login_view(request):
+#     next_url = request.GET.get('next', reverse('blog:post_list'))
+#     print(next_url)
 
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user:
+#     if request.method == 'POST':
+#         username = request.POST.get('username')
+#         password = request.POST.get('password')
+#         user = authenticate(username=username, password=password)
+#         if user:
 
-            if user.is_active:
-                login(request, user)
-                return redirect(next_url)
-            else:
-                return render(request, 'registration/login.html', {'error_msg': 'User not active!'}) 
-        else:
-            return render(request, 'registration/login.html', {'error_msg': 'User not found!'}) 
-    else:
-        return render(request, 'registration/login.html', {}) 
+#             if user.is_active:
+#                 login(request, user)
+#                 return redirect(next_url)
+#             else:
+#                 return render(request, 'registration/login.html', {'error_msg': 'User not active!'}) 
+#         else:
+#             return render(request, 'registration/login.html', {'error_msg': 'User not found!'}) 
+#     else:
+#         return render(request, 'registration/login.html', {}) 
 
-@login_required
-def logout_view(request):
+# @login_required
+# def logout_view(request):
     
-    logout(request)
-    return HttpResponseRedirect(reverse('blog:post_list'))
+#     logout(request)
+#     return HttpResponseRedirect(reverse('blog:post_list'))
