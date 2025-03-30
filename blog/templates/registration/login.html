@@ -1,0 +1,16 @@
+{% extends 'blog/base.html' %}
+
+{% block body_block %}
+    <h1>Login:</h1>
+    <form method="post">
+        <label for="username">Username: </label>
+        <input type="text" id="username" name="username">
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password">    
+        {% csrf_token %}
+        <input type="submit" value="Login">
+    </form>
+    {% if error_msg %}
+        <p>{{error_msg}}</p>
+    {% endif %}
+{% endblock %}

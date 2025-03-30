@@ -1,0 +1,15 @@
+{% extends 'blog/base.html' %}
+
+{% block body_block %}
+    <h1>Posts Detail: </h1>
+    <h3>{{post.title}} - {{post.author}}</h3>
+    <p>{{post.text}}</p>
+
+    <ul>
+    {% for comment in post.comments.all %}
+        <li><p>{{comment.text}} - {{comment.author}}</p></li>
+    {% empty %}
+        <p>No Comments!</p>
+    {% endfor %}
+    </ul>
+{% endblock %}
