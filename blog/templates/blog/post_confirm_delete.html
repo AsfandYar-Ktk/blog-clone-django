@@ -6,7 +6,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Delete">
-        <a href="{% url 'blog:post_detail' post.pk %}">Cancel</a>
+        <input class="btn btn-danger" type="submit" value="Delete">
+        <a class="btn btn-light" href="{% url 'blog:post_detail' post.pk %}">Cancel</a>
     </form>
 {% endblock %}

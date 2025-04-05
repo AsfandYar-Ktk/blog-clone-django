@@ -5,6 +5,8 @@
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Add Comment">
+        <input class="btn btn-primary" type="submit" value="Add Comment">
     </form>
+    <br>
+    <p>Your comment will be visible after approval from admin.</p>
 {% endblock %}

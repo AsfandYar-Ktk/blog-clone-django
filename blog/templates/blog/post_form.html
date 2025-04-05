@@ -8,9 +8,9 @@
     <h1>Update Post:</h1>
     {% endif %}
 
-    <form method="post">
+    <form class="post-form" method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="submit">
+        <button class="btn btn-dark save" type="submit">Save</button>
     </form>
 {% endblock %}

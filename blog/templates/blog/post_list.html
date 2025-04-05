@@ -1,18 +1,21 @@
 {% extends 'blog/base.html' %}
 
 {% block body_block %}
-    <h1>All Posts: </h1>
-    
-    <div class ='jumbotron'>
-        <ul>
-            {% for post in post_list %}
-            <li>
-                <h3>{{post.title}} - {{post.author}}</h3>
-                <p>{{post.text}}</p>
-            </li>
-            {% empty %}
-            <h2>No Posts to show!</h2>
-            {% endfor %}
-        </ul>
+    <div class="centerstage">    
+        <h1>All Posts: </h1>
+        
+        <div class ='jumbotron'>
+                {% for post in post_list %}
+                <div class="post">
+                    <h2><a href="{% url 'blog:post_detail' pk=post.pk %}">{{post.title}} - {{post.author}}</a></h2>
+                    <div class="date createddate">
+                        <p>Created On: {{post.create_date | date:'D M Y'}}<br>Published On: {{post.published_date | date:'D M Y'}}<br>Comments: {{ post.get_approved_comments.count }}</p>
+                    </div>
+                        
+                </div>
+                {% empty %}
+                <h2>No Posts to show!</h2>
+                {% endfor %}
+        </div>
     </div>
 {% endblock %}

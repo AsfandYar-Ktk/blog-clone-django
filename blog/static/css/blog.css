@@ -1,0 +1,49 @@
+
+
+.bigbrand{
+    font-weight: bold;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+}
+
+.centerstage{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.postdate{
+    text-align: center;
+}
+
+.postdate{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: large;
+    text-align: center;
+}
+
+.postcontent{
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 2%;
+    margin-bottom: 2%;
+}
+
+.commentslist{
+    margin-top: 5%;
+    background-color: rgb(231, 230, 230);
+    border-radius: 10px;
+    padding: 1%;
+}
+
+.commentdetail{
+    border: 1px solid rgb(149, 148, 148);
+    margin-bottom: 1%;
+    padding-left: 2%;
+    border-radius: 20px;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+.commentdetail:hover{
+    background-color: rgb(206, 206, 206);
+    cursor:pointer;
+}

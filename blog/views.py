@@ -68,14 +68,13 @@ class DraftListView(LoginRequiredMixin, ListView):
 ######################################
 ######################################
 
-@login_required
+@login_required(login_url='/login/')
 def publish_post(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('blog:post_detail', pk=pk)
 
 
-@login_required
 def add_comment_to_post(request, pk):
     print('PK:',pk)
     post = get_object_or_404(Post, pk=pk)
@@ -90,13 +89,13 @@ def add_comment_to_post(request, pk):
         comment_form = Comment_Form()
     return render(request, 'blog/comment_form.html', {'form':comment_form})
 
-@login_required
+@login_required(login_url='/login/')
 def approve_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('blog:post_detail', pk=comment.post.pk)
 
-@login_required
+@login_required(login_url='/login/')
 def remove_comment(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     post_pk = comment.post.pk
@@ -124,7 +123,7 @@ def login_view(request):
     else:
         return render(request, 'registration/login.html', {}) 
 
-@login_required
+@login_required(login_url='/login/')
 @csrf_protect
 def logout_view(request):
     if request.method == 'POST':

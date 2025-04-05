@@ -1,15 +1,54 @@
 {% extends 'blog/base.html' %}
 
 {% block body_block %}
-    <h1>Posts Detail: </h1>
-    <h3>{{post.title}} - {{post.author}}</h3>
-    <p>{{post.text}}</p>
+    <div class="postdetail">
+        <h1 class="posttitle">Post: {{post.title}} </h1>
+        <h3>Authored by - {{post.author}}</h3>
+        <div>
+            {% if post.published_date %}
+                <div class="date publishdate">
+                    <p>Published on: {{post.published_date}}</p>
+                </div>
+            {% else %}
+                <div class="emptytext">
+                    <p>This is an <b>Unpublished</b> post.</p>
+                </div>
+                <a class="btn btn-info" href="{% url 'blog:publish_post' pk=post.pk %}">Publish</a>
+            {% endif %}
 
-    <ul>
-    {% for comment in post.comments.all %}
-        <li><p>{{comment.text}} - {{comment.author}}</p></li>
-    {% empty %}
-        <p>No Comments!</p>
-    {% endfor %}
-    </ul>
+        </div>
+    
+    </div>    
+    <div class="postcontent">
+        <p>{{post.text | capfirst}}</p>
+    </div>
+
+    {% if user.is_authenticated %}
+        <a class="btn btn-primary" href="{% url 'blog:post_edit' pk=post.pk %}">Edit</a>
+        <a class="btn btn-danger" href="{% url 'blog:post_remove' pk=post.pk %}">Delete</a>
+    {% endif %}
+
+    <br>
+
+    <div class="commentslist">
+        <h2>Comments:</h2>
+        {% for comment in post.comments.all %}
+            
+                {% if user.is_authenticated or comment.approved_comment %}
+                <div class="commentdetail">    
+                <p><b>{{comment.author}} - {{comment.create_date|date:"M Y"}}</b></p>
+                    <p>{{ comment.text|linebreaks }}</p>
+                    {% if not comment.approved_comment %}
+                        <a href="{% url 'blog:comment_approve' pk=comment.pk %}">Approve</a>
+                        <a href="{% url 'blog:comment_remove' pk=comment.pk %}">Remove</a>
+                    {% endif %}
+                </div>
+                {% endif %}
+        {% empty %}
+            <p>No Comments!</p>
+        {% endfor %}
+        <a class="btn btn-info" href="{% url 'blog:add_comment_to_post' pk=post.pk %}">Add Comment</a>
+    </div>
+
+
 {% endblock %}
