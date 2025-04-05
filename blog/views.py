@@ -1,8 +1,9 @@
-from django.shortcuts import render, redirect, HttpResponseRedirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic import (TemplateView, ListView, CreateView,
                                    DetailView, UpdateView, DeleteView)
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_protect
 
 from django.urls import reverse_lazy, reverse
 from django.utils import timezone
@@ -124,7 +125,9 @@ def login_view(request):
         return render(request, 'registration/login.html', {}) 
 
 @login_required
+@csrf_protect
 def logout_view(request):
-    
-    logout(request)
-    return HttpResponseRedirect(reverse('blog:post_list'))
+    if request.method == 'POST':
+        logout(request)
+        return redirect(reverse('blog:post_list'))
+    return redirect(reverse('blog:post_list'))
