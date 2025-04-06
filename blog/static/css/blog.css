@@ -1,3 +1,26 @@
+.icon_small{
+    width: 3%;
+    height: 3%;
+    margin: 0.5%;
+    padding: 0%;
+}
+
+.icon-button {
+    padding: 1%;
+    padding-bottom: 1.3%;
+    padding-right: 1.5%;
+
+    color: black;
+    border: 2px solid black;
+    border-radius: 12px;
+}
+
+.red-button{
+    background-color: rgb(103, 209, 145);
+}
+.green-button{
+    background-color: rgb(209, 135, 103);
+}
 
 
 .bigbrand{
